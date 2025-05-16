@@ -96,51 +96,23 @@ function Index() {
               </div>
 
               {/* Métodos de transporte */}
-              <div className="dropdown">
-                <button
-                  className="btn dropdown-toggle w-100"
-                  type="button"
-                  id="dropdownMenuButton2"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style={{
-                    backgroundColor: "#1972a7",
-                    color: "#b3cdca",
-                    border: "none"
-                  }}
-                >
-                  Métodos de transporte
-                </button>
-                <ul
-                  className="dropdown-menu dropdown-menu-center text-center w-100"
-                  aria-labelledby="dropdownMenuButton2"
-                  style={{
-                    backgroundColor: "#17191a"
-                  }}
-                >
-                  <li>
-                    <Link to="/grafico-maximizacion" className="dropdown-item" style={{ color: "#7fc0f5", backgroundColor: "#17191a" }}>
-                      Esquina nor-oeste
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/otra-ruta" className="dropdown-item" style={{ color: "#7fc0f5", backgroundColor: "#17191a" }}>
-                      Costo minimo
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/otra-ruta" className="dropdown-item" style={{ color: "#7fc0f5", backgroundColor: "#17191a" }}>
-                      Vogel
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <Link
+                to="/Transporte"
+                className="btn"
+                style={{
+                  backgroundColor: "#1972a7",
+                  color: "#b3cdca",
+                  border: "none"
+                }}
+              >
+                Metodo de transporte.
+              </Link>
             </div>
             <p className="card-text" style={{ color: "#7fc0f5" }}>
               <b><i>Diego Andres Baquiax Barrios - 202108036 | </i></b>
               <b><i>Miguel - Carnet | </i></b>
               <b><i>Enrique - Carnet | </i></b>
-              <b><i>Diego - Carnet</i></b>
+              <b><i>Diego Fernando Carpio Alvarado - 202208041</i></b>
             </p>
             <p className="card-text"></p>
           </div>

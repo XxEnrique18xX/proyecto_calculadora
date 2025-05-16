@@ -1,16 +1,16 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Menu from "./menu.jsx";
-import Maximizacion from "./components/metodoGrafico/maximizacion.jsx"; // tu otro componente
+import { Routes, Route } from 'react-router-dom';
+import Menu from './menu.jsx';
+import Maximizacion from './components/metodoGrafico/maximizacion.jsx'; 
+import Transporte from './components/transporte/transporte.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Menu />} />
-        <Route path="/grafico-maximizacion" element={<Maximizacion />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Menu />} />
+      <Route path="/grafico-maximizacion" element={<Maximizacion />} />
+      <Route path="/Transporte" element={<Transporte />} />
+    </Routes>
   );
 }
 

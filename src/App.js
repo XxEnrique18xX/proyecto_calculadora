@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Asignacion from './asignacion';
 
-function App() {
+function App(){
+  const navigate = useNavigate();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Calculadora de Programación Lineal</h1>
+
+      <div>
+        <button onClick={() => alert("Ir al Método Simplex")}>Método Simplex</button>
+        <button onClick={() => alert("Ir al Método Gráfico")}>Método Gráfico</button>
+        <button onClick={() => alert("Ir al Método de Transporte")}>Método de Transporte</button>
+        <button onClick={() => navigate("/asignacion")}>Método de asignación</button>
+        <button onClick={() => alert("Ir al Método CPM")}>Método CPM</button>
+      </div>
+
+      <Routes>
+        <Route path="/asignacion" element={<Asignacion/>}/>
+      </Routes>
     </div>
   );
 }

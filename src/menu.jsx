@@ -22,7 +22,7 @@ function Index() {
             <div className="d-grid gap-2 mb-3" style={{ width: '400px', margin: '0 auto' }}>
               {/* Método SIMPLEX */}
               <Link
-                to="/otra-pagina"
+                to="/simplex"
                 className="btn"
                 style={{
                   backgroundColor: "#1972a7",
@@ -138,7 +138,7 @@ function Index() {
             </div>
             <p className="card-text" style={{ color: "#7fc0f5" }}>
               <b><i>Diego Andres Baquiax Barrios - 202108036 | </i></b>
-              <b><i>Miguel - Carnet | </i></b>
+              <b><i>Miguel Angel García Sapón- 202108056 | </i></b>
               <b><i>Enrique - Carnet | </i></b>
               <b><i>Diego - Carnet</i></b>
             </p>

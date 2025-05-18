@@ -88,7 +88,7 @@ function Index() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/otra-ruta" className="dropdown-item" style={{ color: "#7fc0f5", backgroundColor: "#17191a" }}>
+                    <Link to="/grafico-minimizacion" className="dropdown-item" style={{ color: "#7fc0f5", backgroundColor: "#17191a" }}>
                       Gráfico - Minimizacion
                     </Link>
                   </li>

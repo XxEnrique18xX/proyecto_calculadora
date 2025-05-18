@@ -6,6 +6,7 @@ import Minimizacion from "./components/metodoGrafico/minimizacion.jsx";
 import Asignacion from "./components/asignacion/asignacion.jsx";
 import Cmp from "./components/cpm/cpm.jsx";
 import Transporte from "./components/transporte/transporte.jsx";
+import Simplex from "./components/simplex/SimplexSolver.js";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Menu />} />
         <Route path="/metodo-asignacion" element={<Asignacion />} />
         <Route path="/metodo-cpm" element={<Cmp />} />
+        <Route path="/metodo-simplex" element={<Simplex />} />
         <Route path="/metodo-transporte" element={<Transporte />} />
         <Route path="/grafico-maximizacion" element={<Maximizacion />} />
         <Route path="/grafico-minimizacion" element={<Minimizacion />} />

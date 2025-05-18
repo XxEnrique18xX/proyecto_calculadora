@@ -31,7 +31,7 @@ function Index() {
             >
               {/* Método SIMPLEX */}
               <Link
-                to="/otra-pagina"
+                to="/metodo-simplex"
                 className="btn"
                 style={{
                   backgroundColor: "#1972a7",

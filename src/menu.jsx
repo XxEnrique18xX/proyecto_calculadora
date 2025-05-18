@@ -127,16 +127,15 @@ function Index() {
             </div>
             <p className="card-text" style={{ color: "#7fc0f5" }}>
               <b>
-                <i>Diego Andres Baquiax Barrios - 202108036 | </i>
-              </b>
-              <b>
-                <i>Miguel - Carnet | </i>
-              </b>
-              <b>
-                <i>Enrique - Carnet | </i>
-              </b>
-              <b>
-                <i>Diego - Carnet</i>
+                <i>Desarrollado por:</i>
+                <br />
+                <i>Diego Fernando Carpio Alvarado - 202208041</i>
+                <br />
+                <i>Enrique Armando Rodriguez Tax - 202208049</i>
+                <br />
+                <i>Diego Andres Baquiax Barrios - 202108036</i>
+                <br />
+                <i>Miguel Angel Garcia Sapon - 202108056</i>
               </b>
             </p>
             <p className="card-text"></p>

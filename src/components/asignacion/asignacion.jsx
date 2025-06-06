@@ -16,7 +16,7 @@ function Asignacion() {
 
   const handleChange = (e) => {
     const valor = e.target.value;
-    if (/^\d*$/.test(valor)) {
+    if (/^\d*\.?\d*$/.test(valor)) {
       setTamanio(valor);
     }
   };
@@ -161,7 +161,7 @@ function Asignacion() {
             let min = Infinity;
             let mejorCol = -1;
             ceros.forEach(j => {
-              const valorOriginal = parseInt(matrizDatos[i][j]);
+              const valorOriginal = parseFloat(matrizDatos[i][j]);
               if (valorOriginal < min) {
                 min = valorOriginal;
                 mejorCol = j;
@@ -178,7 +178,7 @@ function Asignacion() {
 
     const resultado = asignaciones.map(a => {
       const letra = letras[a.columna];
-      const valor = parseInt(matrizDatos[a.fila][a.columna]);
+      const valor = parseFloat(matrizDatos[a.fila][a.columna]);
       return { asignacion: `${a.fila + 1}${letra}`, valor };
     });
 
@@ -253,7 +253,7 @@ function Asignacion() {
 
   const handleInputChange = (e, row, col) => {
     const valor = e.target.value;
-    if (/^\d*$/.test(valor)) {
+    if (/^\d*\.?\d*$/.test(valor)) {
       const nuevaMatriz = [...matrizDatos];
       nuevaMatriz[row][col] = valor;
       setMatrizDatos(nuevaMatriz);

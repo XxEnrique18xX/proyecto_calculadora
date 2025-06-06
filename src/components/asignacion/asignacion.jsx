@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function Asignacion() {
+  const navigate = useNavigate();
   const [tamanio, setTamanio] = useState('');
   const [mostrarInputs, setMostrarInputs] = useState(false);
   const [matrizDatos, setMatrizDatos] = useState([]);
@@ -188,30 +190,42 @@ function Asignacion() {
   const renderMatrizConTachesFinales = () => {
     return (
       <div style={{ marginTop: '30px' }}>
-        <h3>Matriz 6: Taches Finales</h3>
-        <div style={{ position: 'relative', display: 'inline-block' }}>
-          <table border="1" style={{ borderCollapse: 'collapse' }}>
+        <h3 style={{ color: "#b3cdca", marginBottom: '20px' }}>Matriz 6: Taches Finales</h3>
+        <div style={{ position: 'relative', display: 'inline-block', overflowX: 'auto' }}>
+          <table 
+            className="table table-bordered"
+            style={{ 
+              backgroundColor: "#17191a",
+              color: "#7fc0f5",
+              borderColor: "#1972a7",
+              margin: "0 auto"
+            }}
+          >
             <thead>
               <tr>
-                <th></th>
+                <th style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}></th>
                 {matrizTransformada[0].map((_, colIndex) => (
-                  <th key={colIndex}>{letras[colIndex]}</th>
+                  <th key={colIndex} style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}>
+                    {letras[colIndex]}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {matrizTransformada.map((fila, rowIndex) => (
                 <tr key={rowIndex}>
-                  <td><strong>{rowIndex + 1}</strong></td>
+                  <td style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center', fontWeight: 'bold' }}>
+                    {rowIndex + 1}
+                  </td>
                   {fila.map((valor, colIndex) => {
                     const tacheFila = tachesFinales.find(t => t.type === 'fila' && t.index === rowIndex);
                     const tacheCol = tachesFinales.find(t => t.type === 'columna' && t.index === colIndex);
                     let estilo = {
                       textAlign: 'center',
-                      padding: '5px',
-                      width: '40px',
-                      height: '40px',
-                      position: 'relative'
+                      padding: '8px',
+                      position: 'relative',
+                      backgroundColor: "#17191a",
+                      color: "#7fc0f5"
                     };
 
                     return (
@@ -366,201 +380,385 @@ function Asignacion() {
     }
   };
 
-  function renderMatriz(matriz) {
+  function renderMatriz(matriz, titulo) {
     return (
-      <table border="1" style={{ borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            <th></th>
-            {matriz[0].map((_, colIndex) => (
-              <th key={colIndex}>{letras[colIndex]}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {matriz.map((fila, rowIndex) => (
-            <tr key={rowIndex}>
-              <td><strong>{rowIndex + 1}</strong></td>
-              {fila.map((valor, colIndex) => (
-                <td key={colIndex} style={{ textAlign: 'center' }}>{valor}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  }
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <h2>Método de Asignación</h2>
-      <label>Ingrese el tamaño de la matriz: </label>
-      <input
-        type="text"
-        value={tamanio}
-        onChange={handleChange}
-        maxLength={2}
-      />
-      <button onClick={generarInputs}>Generar matriz</button>
-
-      {mostrarInputs && matrizDatos.length > 0 && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>Ingrese los valores de la matriz:</h3>
-          <table border="1" style={{ borderCollapse: 'collapse' }}>
+      <div style={{ marginTop: '30px' }}>
+        <h3 style={{ color: "#b3cdca", marginBottom: '20px' }}>{titulo}</h3>
+        <div style={{ overflowX: 'auto' }}>
+          <table 
+            className="table table-bordered"
+            style={{ 
+              backgroundColor: "#17191a",
+              color: "#7fc0f5",
+              borderColor: "#1972a7",
+              margin: "0 auto"
+            }}
+          >
             <thead>
               <tr>
-                <th></th>
-                {matrizDatos[0].map((_, colIndex) => (
-                  <th key={colIndex}>{letras[colIndex]}</th>
+                <th style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}></th>
+                {matriz[0].map((_, colIndex) => (
+                  <th key={colIndex} style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}>
+                    {letras[colIndex]}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {matrizDatos.map((fila, rowIndex) => (
+              {matriz.map((fila, rowIndex) => (
                 <tr key={rowIndex}>
-                  <td><strong>{rowIndex + 1}</strong></td>
+                  <td style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center', fontWeight: 'bold' }}>
+                    {rowIndex + 1}
+                  </td>
                   {fila.map((valor, colIndex) => (
-                    <td key={colIndex}>
-                      <input
-                        type="text"
-                        value={matrizDatos[rowIndex][colIndex]}
-                        onChange={(e) => handleInputChange(e, rowIndex, colIndex)}
-                        style={{ width: '40px', textAlign: 'center' }}
-                      />
+                    <td key={colIndex} style={{ textAlign: 'center', backgroundColor: "#17191a", color: "#7fc0f5", padding: '8px' }}>
+                      {valor}
                     </td>
                   ))}
                 </tr>
               ))}
             </tbody>
           </table>
-          <button onClick={aplicarReduccionPorFila} style={{ marginTop: '15px' }}>
-            Generar Matriz Reducida por Fila y Columna
-          </button>
         </div>
-      )}
+      </div>
+    );
+  }
 
-      {matrizReduccionFila.length > 0 && (
-        <div style={{ marginTop: '30px' }}>
-          <h3>Matriz Reducción por Fila:</h3>
-          {renderMatriz(matrizReduccionFila)}
-        </div>
-      )}
+  return (
+    <div
+      style={{
+        backgroundColor: "#242728",
+        minHeight: "100vh",
+        padding: "40px 0",
+        fontFamily: "Arial, sans-serif"
+      }}
+    >
+      {/* Botón de retroceso */}
+      <button
+        className="btn btn-danger position-absolute"
+        style={{ top: 30, left: 30, zIndex: 10 }}
+        onClick={() => navigate("/")}
+      >
+        ← Volver
+      </button>
 
-      {matrizReduccionColumna.length > 0 && (
-        <div style={{ marginTop: '30px' }}>
-          <h3>Matriz Reducción por Columna:</h3>
-          {renderMatriz(matrizReduccionColumna)}
-          <button onClick={aplicarTaches} style={{ marginTop: '15px' }}>
-            Aplicar Taches (Matriz 4)
-          </button>
-        </div>
-      )}
+      <div className="container mt-5 d-flex justify-content-center">
+        <div
+          className="card border"
+          style={{
+            maxWidth: "90rem",
+            backgroundColor: "#2d3133",
+            color: "#7fc0f5",
+          }}
+        >
+          <div className="card-body text-center">
+            <h1 className="card-title mb-4" style={{ color: "#7fc0f5" }}>
+              Método de Asignación
+            </h1>
+            
+            {/* Input para tamaño de matriz */}
+            <div className="mb-4">
+              <label
+                className="form-label fw-bold fs-5"
+                style={{ color: "#b3cdca" }}
+              >
+                Ingrese el tamaño de la matriz:
+              </label>
+              <div className="d-flex align-items-center justify-content-center gap-3 mt-3">
+                <input
+                  type="text"
+                  className="form-control text-center"
+                  style={{
+                    width: "100px",
+                    backgroundColor: "#17191a",
+                    color: "#7fc0f5",
+                    border: "1px solid #1972a7",
+                  }}
+                  value={tamanio}
+                  onChange={handleChange}
+                  maxLength={2}
+                  placeholder="Ej: 3"
+                />
+                <button
+                  className="btn"
+                  style={{
+                    background: "#1972a7",
+                    color: "#fff",
+                    border: "none",
+                    padding: "0 25px",
+                    borderRadius: "2rem",
+                    fontWeight: "bold",
+                  }}
+                  onClick={generarInputs}
+                >
+                  Generar matriz
+                </button>
+              </div>
+            </div>
 
-      {taches.length > 0 && (
-        <div style={{ marginTop: '30px' }}>
-          <h3>Matriz 4: Taches</h3>
-          <div style={{ position: 'relative', display: 'inline-block' }}>
-            <table border="1" style={{ borderCollapse: 'collapse' }}>
-              <thead>
-                <tr>
-                  <th></th>
-                  {matrizReduccionColumna[0].map((_, colIndex) => (
-                    <th key={colIndex}>{letras[colIndex]}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {matrizReduccionColumna.map((fila, rowIndex) => (
-                  <tr key={rowIndex}>
-                    <td><strong>{rowIndex + 1}</strong></td>
-                    {fila.map((valor, colIndex) => {
-                      const tacheFila = taches.find(t => t.type === 'fila' && t.index === rowIndex);
-                      const tacheCol = taches.find(t => t.type === 'columna' && t.index === colIndex);
-                      let estilo = {
-                        textAlign: 'center',
-                        padding: '5px',
-                        width: '40px',
-                        height: '40px',
-                        position: 'relative',
-                        backgroundColor: minimoLibre && minimoLibre.fila === rowIndex && minimoLibre.columna === colIndex ? 'lightgreen' : 'white'
-                      };
-
-                      return (
-                        <td key={colIndex} style={estilo}>
-                          {valor}
-                          {tacheFila && (
-                            <div style={{
-                              position: 'absolute',
-                              top: '50%',
-                              left: 0,
-                              width: '100%',
-                              height: '2px',
-                              backgroundColor: tacheCol ? 'blue' : 'red',
-                              transform: 'translateY(-50%)'
-                            }}></div>
-                          )}
-                          {tacheCol && (
-                            <div style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: '50%',
-                              width: '2px',
-                              height: '100%',
-                              backgroundColor: tacheFila ? 'blue' : 'red',
-                              transform: 'translateX(-50%)'
-                            }}></div>
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
-      {asignacionListo && (
-        <div style={{ marginTop: '20px', color: 'green', fontWeight: 'bold' }}>
-          ✅ Ya puedes pasar al paso final. No es necesario aplicar Matriz 5 ni Matriz 6.
-        </div>
-      )}
-
-      {matrizTransformada.length > 0 && (
-        <div style={{ marginTop: '30px' }}>
-          <h3>Matriz 5: Transformada</h3>
-          {renderMatriz(matrizTransformada)}
-
-          <div style={{ marginTop: '20px' }}>
-            <button onClick={aplicarTachesFinales}>
-              Aplicar Taches Finales (Matriz 6)
-            </button>
-          </div>
-
-          {tachesFinales.length > 0 && (
-            <>
-              {renderMatrizConTachesFinales()}
-
-              <button onClick={resolverAsignacionFinal} style={{ marginTop: '20px' }}>
-                Resolver Asignación Final
-              </button>
-
-              {asignacionesFinales.length > 0 && (
-                <div style={{ marginTop: '30px' }}>
-                  <h3>Resultado Final:</h3>
-                  <ul>
-                    {asignacionesFinales.map((a, i) => (
-                      <li key={i}>{a.asignacion} - {a.valor}</li>
-                    ))}
-                  </ul>
-                  <p><strong>Total:</strong> {asignacionesFinales.reduce((sum, a) => sum + a.valor, 0)}</p>
+            {/* Matriz de entrada */}
+            {mostrarInputs && matrizDatos.length > 0 && (
+              <div style={{ marginTop: '30px' }}>
+                <h3 style={{ color: "#b3cdca", marginBottom: '20px' }}>Ingrese los valores de la matriz:</h3>
+                <div style={{ overflowX: 'auto' }}>
+                  <table 
+                    className="table table-bordered"
+                    style={{ 
+                      backgroundColor: "#17191a",
+                      color: "#7fc0f5",
+                      borderColor: "#1972a7",
+                      margin: "0 auto"
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}></th>
+                        {matrizDatos[0].map((_, colIndex) => (
+                          <th key={colIndex} style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}>
+                            {letras[colIndex]}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {matrizDatos.map((fila, rowIndex) => (
+                        <tr key={rowIndex}>
+                          <td style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center', fontWeight: 'bold' }}>
+                            {rowIndex + 1}
+                          </td>
+                          {fila.map((valor, colIndex) => (
+                            <td key={colIndex} style={{ padding: '5px' }}>
+                              <input
+                                type="text"
+                                className="form-control text-center"
+                                style={{
+                                  width: "60px",
+                                  backgroundColor: "#17191a",
+                                  color: "#7fc0f5",
+                                  border: "1px solid #1972a7",
+                                }}
+                                value={matrizDatos[rowIndex][colIndex]}
+                                onChange={(e) => handleInputChange(e, rowIndex, colIndex)}
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              )}
-            </>
-          )}
+                <button 
+                  className="btn mt-4"
+                  style={{
+                    background: "#8bc34a",
+                    color: "#fff",
+                    border: "none",
+                    padding: "10px 30px",
+                    borderRadius: "2rem",
+                    fontWeight: "bold",
+                  }}
+                  onClick={aplicarReduccionPorFila}
+                >
+                  Generar Matriz Reducida por Fila y Columna
+                </button>
+              </div>
+            )}
+
+            {/* Matriz Reducción por Fila */}
+            {matrizReduccionFila.length > 0 && 
+              renderMatriz(matrizReduccionFila, "Matriz Reducción por Fila")
+            }
+
+            {/* Matriz Reducción por Columna */}
+            {matrizReduccionColumna.length > 0 && (
+              <>
+                {renderMatriz(matrizReduccionColumna, "Matriz Reducción por Columna")}
+                <button 
+                  className="btn mt-4"
+                  style={{
+                    background: "#8bc34a",
+                    color: "#fff",
+                    border: "none",
+                    padding: "10px 30px",
+                    borderRadius: "2rem",
+                    fontWeight: "bold",
+                  }}
+                  onClick={aplicarTaches}
+                >
+                  Aplicar Taches (Matriz 4)
+                </button>
+              </>
+            )}
+
+            {/* Matriz 4: Taches */}
+            {taches.length > 0 && (
+              <div style={{ marginTop: '30px' }}>
+                <h3 style={{ color: "#b3cdca", marginBottom: '20px' }}>Matriz 4: Taches</h3>
+                <div style={{ position: 'relative', display: 'inline-block', overflowX: 'auto' }}>
+                  <table 
+                    className="table table-bordered"
+                    style={{ 
+                      backgroundColor: "#17191a",
+                      color: "#7fc0f5",
+                      borderColor: "#1972a7",
+                      margin: "0 auto"
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}></th>
+                        {matrizReduccionColumna[0].map((_, colIndex) => (
+                          <th key={colIndex} style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center' }}>
+                            {letras[colIndex]}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {matrizReduccionColumna.map((fila, rowIndex) => (
+                        <tr key={rowIndex}>
+                          <td style={{ backgroundColor: "#2d3133", color: "#b3cdca", textAlign: 'center', fontWeight: 'bold' }}>
+                            {rowIndex + 1}
+                          </td>
+                          {fila.map((valor, colIndex) => {
+                            const tacheFila = taches.find(t => t.type === 'fila' && t.index === rowIndex);
+                            const tacheCol = taches.find(t => t.type === 'columna' && t.index === colIndex);
+                            let estilo = {
+                              textAlign: 'center',
+                              padding: '8px',
+                              position: 'relative',
+                              backgroundColor: minimoLibre && minimoLibre.fila === rowIndex && minimoLibre.columna === colIndex ? '#8bc34a' : '#17191a',
+                              color: "#7fc0f5"
+                            };
+
+                            return (
+                              <td key={colIndex} style={estilo}>
+                                {valor}
+                                {tacheFila && (
+                                  <div style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: 0,
+                                    width: '100%',
+                                    height: '2px',
+                                    backgroundColor: tacheCol ? 'blue' : 'red',
+                                    transform: 'translateY(-50%)'
+                                  }}></div>
+                                )}
+                                {tacheCol && (
+                                  <div style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: '50%',
+                                    width: '2px',
+                                    height: '100%',
+                                    backgroundColor: tacheFila ? 'blue' : 'red',
+                                    transform: 'translateX(-50%)'
+                                  }}></div>
+                                )}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Mensaje de asignación lista */}
+            {asignacionListo && (
+              <div 
+                className="alert mt-4"
+                style={{ 
+                  backgroundColor: "#8bc34a", 
+                  color: "#fff", 
+                  border: "none",
+                  fontWeight: "bold"
+                }}
+              >
+                ✅ Ya puedes pasar al paso final. No es necesario aplicar Matriz 5 ni Matriz 6.
+              </div>
+            )}
+
+            {/* Matriz 5: Transformada */}
+            {matrizTransformada.length > 0 && (
+              <div style={{ marginTop: '30px' }}>
+                {renderMatriz(matrizTransformada, "Matriz 5: Transformada")}
+
+                <div style={{ marginTop: '20px' }}>
+                  <button 
+                    className="btn"
+                    style={{
+                      background: "#8bc34a",
+                      color: "#fff",
+                      border: "none",
+                      padding: "10px 30px",
+                      borderRadius: "2rem",
+                      fontWeight: "bold",
+                    }}
+                    onClick={aplicarTachesFinales}
+                  >
+                    Aplicar Taches Finales (Matriz 6)
+                  </button>
+                </div>
+
+                {tachesFinales.length > 0 && (
+                  <>
+                    {renderMatrizConTachesFinales()}
+
+                    <button 
+                      className="btn mt-4"
+                      style={{
+                        background: "#1972a7",
+                        color: "#fff",
+                        border: "none",
+                        padding: "10px 30px",
+                        borderRadius: "2rem",
+                        fontWeight: "bold",
+                      }}
+                      onClick={resolverAsignacionFinal}
+                    >
+                      Resolver Asignación Final
+                    </button>
+
+                    {asignacionesFinales.length > 0 && (
+                      <div style={{ marginTop: '30px' }}>
+                        <h3 style={{ color: "#b3cdca", marginBottom: '20px' }}>Resultado Final:</h3>
+                        <div
+                          style={{
+                            backgroundColor: "#17191a",
+                            color: "#7fc0f5",
+                            padding: "20px",
+                            borderRadius: "10px",
+                            border: "1px solid #1972a7",
+                            maxWidth: "400px",
+                            margin: "0 auto"
+                          }}
+                        >
+                          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                            {asignacionesFinales.map((a, i) => (
+                              <li key={i} style={{ padding: '5px 0', borderBottom: i < asignacionesFinales.length - 1 ? '1px solid #2d3133' : 'none' }}>
+                                <strong>{a.asignacion}</strong> - {a.valor}
+                              </li>
+                            ))}
+                          </ul>
+                          <div style={{ marginTop: '15px', padding: '10px', backgroundColor: '#8bc34a', borderRadius: '5px' }}>
+                            <strong style={{ color: '#fff' }}>
+                              Total: {asignacionesFinales.reduce((sum, a) => sum + a.valor, 0)}
+                            </strong>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
